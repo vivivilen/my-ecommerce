@@ -81,7 +81,7 @@ const Order = () => {
           Your Cart is Empty!
         </h1>
         <p className="text-sm sm:text-base text-gray-500 mb-7 text-center">
-          Looks like you haven't added anything to your cart yet.
+          Looks like you haven&apos;t added anything to your cart yet.
         </p>
         <div>
           <BlueButton
