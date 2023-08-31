@@ -9,7 +9,7 @@ const ProductList = ({ products }) => {
       </h1>
       <div className="w-full flex flex-wrap justify-center sm:justify-start gap-x-5 gap-y-4">
         {products.map((item) => (
-          <Link href={`/products/${item.id}`}>
+          <Link key={item.id} href={`/products/${item.id}`} passHref>
             <Card
               key={item.id}
               title={item.title}

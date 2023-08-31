@@ -1,29 +1,35 @@
 import { Carousel } from "flowbite-react";
 
+const imgBanner = [
+  {
+    id: "1",
+    title: "promo-1",
+    image: "/images/img-1.jpg",
+  },
+  {
+    id: "2",
+    title: "promo-2",
+    image: "/images/img-2.jpg",
+  },
+  {
+    id: "3",
+    title: "promo-3",
+    image: "/images/img-3.jpg",
+  },
+  {
+    id: "4",
+    title: "promo-4",
+    image: "/images/img-4.jpg",
+  },
+];
+
 const Banner = () => {
   return (
-    <div className="relative h-56 overflow-hidden rounded-lg md:h-[32rem]">
+    <div className="h-56 md:h-[32rem] rounded-lg ">
       <Carousel slideInterval={3000}>
-        <img
-          alt="..."
-          //   src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
-          src="/images/img-1.jpg"
-        />
-        <img
-          alt="..."
-          //   src="https://flowbite.com/docs/images/carousel/carousel-2.svg"
-          src="/images/img-2.jpg"
-        />
-        <img
-          alt="..."
-          //   src="https://flowbite.com/docs/images/carousel/carousel-3.svg"
-          src="/images/img-3.jpg"
-        />
-        <img
-          alt="..."
-          //   src="https://flowbite.com/docs/images/carousel/carousel-4.svg"
-          src="/images/img-4.jpg"
-        />
+        {imgBanner.map((item) => {
+          return <img key={item.id} src={item.image} alt={item.title} />;
+        })}
       </Carousel>
     </div>
   );
