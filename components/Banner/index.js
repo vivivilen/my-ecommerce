@@ -1,4 +1,5 @@
 import { Carousel } from "flowbite-react";
+import Image from "next/image";
 
 const imgBanner = [
   {
@@ -28,7 +29,17 @@ const Banner = () => {
     <div className="h-56 md:h-[32rem] rounded-lg ">
       <Carousel slideInterval={3000}>
         {imgBanner.map((item) => {
-          return <img key={item.id} src={item.image} alt={item.title} />;
+          return (
+            <Image
+              key={item.id}
+              src={item.image}
+              alt={item.title}
+              width={1350}
+              height={1000}
+              objectFit="contain"
+              unoptimized
+            />
+          );
         })}
       </Carousel>
     </div>

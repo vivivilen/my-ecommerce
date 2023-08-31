@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Counter from "../../components/Counter";
 import BlueButton from "../../components/BlueButton";
+import Image from "next/image";
 
 const Order = () => {
   const router = useRouter();
@@ -68,16 +69,20 @@ const Order = () => {
     return (
       <div className="flex flex-col min-h-[20rem] justify-center items-center">
         <div className="flex justify-center items-center w-28 h-28">
-          <img
+          <Image
             src="/images/empty-cart.svg"
             className="w-20 h-20 sm:max-w-28 sm:max-h-28"
+            width={200}
+            height={200}
             alt="empty-cart"
           />
         </div>
         <h1 className="text-lg sm:text-2xl font-semibold mt-3">
           Your Cart is Empty!
         </h1>
-        <p className="text-sm sm:text-base text-gray-500 mb-7 text-center">Looks like you haven't added anything to your cart yet.</p>
+        <p className="text-sm sm:text-base text-gray-500 mb-7 text-center">
+          Looks like you haven't added anything to your cart yet.
+        </p>
         <div>
           <BlueButton
             title={"Return to Shop"}
@@ -99,9 +104,12 @@ const Order = () => {
               return (
                 <div className="p-3 flex" key={item.id}>
                   <div className="w-32 h-32">
-                    <img
+                    <Image
                       className="max-w-32 max-h-32"
                       src={item.images[0]}
+                      width={250}
+                      height={250}
+                      objectFit="contain"
                       alt={item.title}
                     />
                   </div>
