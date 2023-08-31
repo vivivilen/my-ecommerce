@@ -67,7 +67,7 @@ const Order = () => {
 
   const NoOrder = () => {
     return (
-      <div className="flex flex-col min-h-[20rem] justify-center items-center">
+      <div className="flex flex-col justify-center items-center">
         <div className="flex justify-center items-center w-28 h-28">
           <Image
             src="/images/empty-cart.svg"

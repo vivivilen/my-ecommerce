@@ -6,9 +6,7 @@ export default function Home({ products }) {
   return (
     <Fragment>
       <Banner />
-      <main>
-        <ProductList products={products.products} />
-      </main>
+      <ProductList products={products.products} />
     </Fragment>
   );
 }

@@ -7,7 +7,7 @@ const Confirmation = () => {
 
   return (
     <section className="px-4 py-7 md:px-28">
-      <div className="flex flex-col min-h-[20rem] justify-center items-center">
+      <div className="flex flex-col justify-center items-center">
         <CheckCircleIcon color="success" style={{ fontSize: "6rem" }} />
         <h1 className="text-xl sm:text-2xl font-semibold mt-2">
           Your order is confirmed!
