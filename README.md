@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Technologies
+- Next.js
+- Tailwind CSS
+
 ## Getting Started
 
 First, run the development server:
@@ -18,14 +22,22 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+## Project Structure
+```
+components/     -> reusable component
 
-To learn more about Next.js, take a look at the following resources:
+pages/          -> page router (folder name represent page url)
+  confirmation/ -> confirmation pages layout
+  ...           
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+public/         -> static public assets
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+styles/         -> css related files
+
+.gitignore      -> contains list of files & directories that shouldn't be committed to git
+
+next.config.js  -> Next.js configure file
+```
 
 ## Deploy on Vercel
 
