@@ -1,7 +1,7 @@
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Badge } from "@mui/material";
 import Link from "next/link";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const [countCartItem, setCountCartItem] = useState(0);
@@ -10,18 +10,19 @@ const Header = () => {
   useEffect(() => {
     const dataLocal = JSON.parse(localStorage.getItem("cart") || "[]");
 
-    window.addEventListener("cart", () => {
-      setIsUpdated(!isUpdated);
-    });
+    const countItem = dataLocal.reduce(
+      (acc, currValue) => acc + currValue.qty,
+      0
+    );
+    setCountCartItem(countItem);
 
-    let allQty = [];
+    const handleCartUpdate = () => setIsUpdated(!isUpdated);
 
-    for (let i of dataLocal) {
-      allQty.push(i.qty);
-    }
+    window.addEventListener("cart", handleCartUpdate);
 
-    const count = allQty.reduce((acc, currValue) => acc + currValue, 0);
-    setCountCartItem(count);
+    return () => {
+      window.removeEventListener("cart", handleCartUpdate);
+    };
   }, [isUpdated]);
 
   return (

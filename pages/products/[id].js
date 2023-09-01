@@ -14,9 +14,7 @@ const ProductDetails = ({ details }) => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
   useEffect(() => {
-    const dataLocal = localStorage.getItem("cart")
-      ? JSON.parse(localStorage.getItem("cart"))
-      : [];
+    const dataLocal = JSON.parse(localStorage.getItem("cart") || "[]");
     setCart(dataLocal);
   }, []);
 
@@ -25,20 +23,19 @@ const ProductDetails = ({ details }) => {
 
   const addToCart = () => {
     const id = cart.find((item) => item.id === details.id);
+    let updatedCart;
 
     if (id) {
-      const updatedCart = cart.map((cartItem) =>
+      updatedCart = cart.map((cartItem) =>
         cartItem.id === details.id
           ? { ...cartItem, qty: cartItem.qty + qty }
           : cartItem
       );
-      setCart(updatedCart);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
     } else {
-      const updatedCart = [...cart, { ...details, qty: qty }];
-      setCart(updatedCart);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      updatedCart = [...cart, { ...details, qty: qty }];
     }
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
     setQty(1);
     setOpenSnackbar(true);
     window.dispatchEvent(new Event("cart"));

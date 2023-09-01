@@ -13,9 +13,7 @@ const Order = () => {
   const [subTotal, setSubTotal] = useState(0);
 
   useEffect(() => {
-    const dataLocal = localStorage.getItem("cart")
-      ? JSON.parse(localStorage.getItem("cart"))
-      : [];
+    const dataLocal = JSON.parse(localStorage.getItem("cart") || "[]");
     setDataOrder(dataLocal);
   }, []);
 
@@ -23,22 +21,23 @@ const Order = () => {
     countOrderDetails();
   }, [dataOrder]);
 
-  const incrementById = (id) => {
+  const updateQuantityById = (id, amount) => {
     const updatedCart = dataOrder.map((orderItem) =>
-      orderItem.id === id ? { ...orderItem, qty: orderItem.qty + 1 } : orderItem
+      orderItem.id === id
+        ? { ...orderItem, qty: orderItem.qty + amount }
+        : orderItem
     );
     setDataOrder(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     window.dispatchEvent(new Event("cart"));
   };
 
+  const incrementById = (id) => {
+    updateQuantityById(id, 1);
+  };
+
   const decrementById = (id) => {
-    const updatedCart = dataOrder.map((orderItem) =>
-      orderItem.id === id ? { ...orderItem, qty: orderItem.qty - 1 } : orderItem
-    );
-    setDataOrder(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-    window.dispatchEvent(new Event("cart"));
+    updateQuantityById(id, -1);
   };
 
   const deleteItem = (id) => {
@@ -49,20 +48,23 @@ const Order = () => {
   };
 
   const countOrderDetails = () => {
-    let totalItems = dataOrder
-      .map((item) => item.qty)
-      .reduce((acc, currValue) => acc + currValue, 0);
+    let totalItems = dataOrder.reduce(
+      (acc, currValue) => acc + currValue.qty,
+      0
+    );
 
-    let totalPrice = dataOrder
-      .map((item) => item.price * item.qty)
-      .reduce((acc, currValue) => acc + currValue, 0);
+    let totalPrice = dataOrder.reduce(
+      (acc, currValue) => acc + currValue.price * currValue.qty,
+      0
+    );
 
     setTotalItems(totalItems);
     setSubTotal(totalPrice);
   };
 
   const emptyCart = () => {
-    localStorage.clear("cart");
+    setDataOrder([]);
+    localStorage.removeItem("cart");
   };
 
   const NoOrder = () => {
