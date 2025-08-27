@@ -1,4 +1,4 @@
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import { Badge } from "@mui/material";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -33,7 +33,7 @@ const Header = () => {
         </Link>
         <Link href={"/order"}>
           <Badge color="success" badgeContent={countCartItem}>
-            <ShoppingCartIcon className="w-6 h-6 cursor-pointer" />
+            <ShoppingBagIcon className="w-6 h-6 cursor-pointer" />
           </Badge>
         </Link>
       </div>
